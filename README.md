@@ -12,6 +12,8 @@ Golang is used for retrieving the Toggl data using the Toggl Reports API and the
 
 This project makes use of the Golang projects https://github.com/dougEfresh/gtoggl, and https://github.com/adlio/trello.
 
+Read the [application wiki](https://github.com/sitMCella/toggl-trello-kpi/wiki) for a detailed description of the application configuration and an usage example.
+
 ## Configuration
 
 Create a file `configuration/settings.yml` using the file `configuration/settings_template.yml` as template.
