@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: toggltrelloapi
+    ports:
+      - '5432:5432'
+  grafana:
+    image: grafana/grafana:7.4.3
+    volumes:
+      - ./grafana/provisioning/datasources/:/etc/grafana/provisioning/datasources/
+      - ./grafana/dashboard.json:/var/lib/grafana/dashboards/dashboard.json
+      - ./grafana/provisioning/dashboards/:/etc/grafana/provisioning/dashboards/
+      - ./grafana/plugins/:/var/lib/grafana/plugins/
+    ports:
+      - '3000:3000'

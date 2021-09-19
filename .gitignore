@@ -1,0 +1,30 @@
+.idea/
+.vscode/
+
+.DS_Store
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+grafana/plugins/**
+grafana/dashboard.json
+
+toggl-trello-kpi
+toggl-trello-kpi.exe
+
+configuration/settings.yml
+
+data/
