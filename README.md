@@ -25,10 +25,9 @@ The Toggl API Token can be retrieved from the user profile in Toggl.
 Add the Toggl API Token to the property "TOGGL_API_TOKEN" in `configuration/settings.yml`.
 
 Run the following curl command in order to retrieve the user workspaces in Toggl:
- `curl -v -u {Toggl_API_Token}:api_token -H "accept: application/json" -X GET https://api.track.toggl.com/api/v8/workspaces | jq '.'`
-
-Run the following curl command in order to simulate the REST API call of the application to Toggl:
- `curl -v -u {Toggl_API_Token}:api_token -H "accept: application/json" -X GET "https://api.track.toggl.com/reports/api/v2/details?workspace_id={Workspace_ID}&user_agent=testuser" | jq '.'`
+```
+curl -v -u {Toggl_API_Token}:api_token -H "accept: application/json" -X GET https://api.track.toggl.com/api/v8/workspaces | jq '.'
+```
 
 ### Trello API
 
@@ -38,22 +37,30 @@ Generate the Trello App Key from the web page:
 Add the Trello App Key to the property "TRELLO_APP_KEY" in `configuration/settings.yml`.
 
 Generate the API Token for the application from the web page:
- `https://trello.com/1/authorize?key=<Trello_App_Key>&name=my_api_key&expiration=30days&response_type=token`
+```http
+https://trello.com/1/authorize?key=<Trello_App_Key>&name=my_api_key&expiration=30days&response_type=token
+```
 
 Add the Trello API Token to the property "TRELLO_API_TOKEN" in `configuration/settings.yml`.
 
 Run the following curl command to test the REST API call:
- `curl -H "accept: application/json" -X GET "https://api.trello.com/1/members/me/boards?key={Trello_App_Key}&token={Trello_Token}" | jq '.'`
+```sh
+curl -H "accept: application/json" -X GET "https://api.trello.com/1/members/me/boards?key={Trello_App_Key}&token={Trello_Token}" | jq '.'
+```
 
 Run the following curl command in order to retrieve the list of boards from Trello:
- `curl -H "accept: application/json" -X GET "https://api.trello.com/1/members/me/boards?fields=name,url&key={Trello_App_Key}&token={Trello_Token}" | jq '.'`
+```sh
+curl -H "accept: application/json" -X GET "https://api.trello.com/1/members/me/boards?fields=name,url&key={Trello_App_Key}&token={Trello_Token}" | jq '.'
+```
 
 Extract the ID of the board from the output of the last curl command.
 
 Add the board ID to the property "TRELLO_BOARD_ID" in `configuration/settings.yml`.
 
 Run the following curl command in order to retrieve the labels configuration of a specific board from Trello:
- `curl -H "accept: application/json" -X GET "https://api.trello.com/1/boards/{Board_ID}/labels?key={Trello_App_Key}&token={Trello_Token}" | jq '.'`
+```sh
+curl -H "accept: application/json" -X GET "https://api.trello.com/1/boards/{Board_ID}/labels?key={Trello_App_Key}&token={Trello_Token}" | jq '.'
+```
 
 
 ### Trello Cards
@@ -115,7 +122,9 @@ Prerequisites:
 ### Build project
 
 Use the proper GOOS and GOARCH parameters from https://golang.org/doc/install/source#environment:
- `env GOOS=[host_operating_system] GOARCH=[host_cpu] go build -o toggl-trello-kpi cmd/main.go`
+```sh
+env GOOS=[host_operating_system] GOARCH=[host_cpu] go build -o toggl-trello-kpi cmd/main.go
+```
 
 ### Run tests
 
@@ -138,12 +147,16 @@ The usual flow is the following: 1) Create the Grafana dashboard, 2) Run the Gra
 ### Run the Grafana Dashboard
 
 Run the following command:
-`docker-compose -f docker-compose.yml up`
+```sh
+docker-compose -f docker-compose.yml up
+```
 
 ### Retrieve and configure Toggl and Trello data, create the Grafana dashboard
 
 Run the application:
- `./toggl-trello-kpi -choice={choice_id} [options]`
+```sh
+./toggl-trello-kpi -choice={choice_id} [options]
+```
 
 Where:
  - choice_id: 1 -> Download the Toggl Time data as CSV file.
@@ -188,4 +201,6 @@ Example 8. Create the Grafana Dashboard.
 ### PostgreSQL database client
 
 Run the PostgreSQL client (requires psql):
-`psql -h 127.0.0.1 -p 5432 -U postgres -W -d toggltrelloapi`
+```sh
+psql -h 127.0.0.1 -p 5432 -U postgres -W -d toggltrelloapi
+```
