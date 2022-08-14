@@ -1,8 +1,29 @@
 # Key Perfomance Indicators (KPIs) for Toggl and Trello
+=================
+
+## Table of contents
+=================
+
+   * [Introduction](#introduction)
+   * [Configuration](#configuration)
+      * [Toggl Reports API](#toggl-reports-api)
+      * [Trello API](#trello-api)
+      * [Trello Cards](#trello-cards)
+      * [Grafana](#grafana)
+      * [Configure the Grafana plugins](#configure-the-grafana-plugins)
+   * [Development](#development)
+      * [Build project](#build-project)
+      * [Run tests](#run-tests)
+      * [Code format](#code-format)
+   * [Run application](#run-application)
+      * [Configure Toggl and Trello data](#configure-toggl-and-trello-data)
+      * [Run the Grafana Dashboard](#run-the-grafana-dashboard)
+      * [PostgreSQL database client](#postgresql-database-client)
 
 ## Introduction
+=================
 
-The following project creates a dashboard for Key Performance Indicators (KPIs) visualization. The data is retrieved from Trello and Toggl.
+The following project defines a Grafana dashboard for Key Performance Indicators (KPIs) visualization. The data is retrieved from Trello and Toggl.
 
 The dashboard is used for monitoring the tasks assigned to a specific team member on one or multiple projects.
 
@@ -15,12 +36,14 @@ This project makes use of the Golang projects https://github.com/dougEfresh/gtog
 Read the [application wiki](https://github.com/sitMCella/toggl-trello-kpi/wiki) for a detailed description of the application configuration and an usage example.
 
 ## Configuration
+=================
 
 Create a file `configuration/settings.yml` using the file `configuration/settings_template.yml` as template.
 
 The following sections describe how to fill the configuration file.
 
 ### Toggl Reports API
+=================
 
 The Toggl API Token can be retrieved from the user profile in Toggl.
 
@@ -32,6 +55,7 @@ curl -v -u {Toggl_API_Token}:api_token -H "accept: application/json" -X GET http
 ```
 
 ### Trello API
+=================
 
 Generate the Trello App Key from the web page:
  `https://trello.com/app-key`
@@ -64,8 +88,8 @@ Run the following curl command in order to retrieve the labels configuration of 
 curl -H "accept: application/json" -X GET "https://api.trello.com/1/boards/{Board_ID}/labels?key={Trello_App_Key}&token={Trello_Token}" | jq '.'
 ```
 
-
 ### Trello Cards
+=================
 
 Each card in Trello should contain 4 label types:
  - Project
@@ -90,6 +114,7 @@ TRELLO_LABEL_CARD_TYPE_COLOR: ["red", "blue"]
 ```
 
 ### Grafana
+=================
 
 Grafana is used as the visualization tool for the Toggl and Trello data.
 
@@ -104,7 +129,8 @@ GRAFANA_END_MONTH: "03"
 
 Make sure to run the application with the choice_id 8 (see below), in order to complete the configuration of the Grafana Dashboard.
 
-### Configure the Grafana piechart-panel plugin
+### Configure the Grafana plugins
+=================
 
 This project makes use of the Grafana plugin: https://github.com/grafana/piechart-panel.git.
 
@@ -115,6 +141,7 @@ git clone https://github.com/grafana/piechart-panel.git --branch release-1.3.8
 ```
 
 ## Development
+=================
 
 Prerequisites:
 * Golang 1.13+
@@ -122,6 +149,7 @@ Prerequisites:
 * Docker compose
 
 ### Build project
+=================
 
 Use the proper GOOS and GOARCH parameters from https://golang.org/doc/install/source#environment:
 ```sh
@@ -129,31 +157,28 @@ env GOOS=[host_operating_system] GOARCH=[host_cpu] go build -o toggl-trello-kpi 
 ```
 
 ### Run tests
+=================
 
  `go test ./...`
 
 ### Code format
+=================
 
 Use gofmt to format the source code:
 
  `gofmt -s -w .`
 
 ## Run application
+=================
 
 The application provides different functionalities.
 
 Docker compose is used for running the database and Grafana.
 
-The usual flow is the following: 1) Create the Grafana dashboard, 2) Run the Grafana dashboard, 3) Retrieve and configure Toggl and Trello data.
+The usual flow is the following: 1) Create the Grafana dashboard, 2) Retrieve and configure Toggl and Trello data, 3) Run the Grafana dashboard, 4) Send the data to the database.
 
-### Run the Grafana Dashboard
-
-Run the following command:
-```sh
-docker-compose -f docker-compose.yml up
-```
-
-### Retrieve and configure Toggl and Trello data, create the Grafana dashboard
+### Configure Toggl and Trello data
+=================
 
 Run the application:
 ```sh
@@ -197,10 +222,19 @@ Example 6.2. Downlaod the database table "toggl_time" as CSV file "toggl_time.cs
 Example 7. Update the column "trello_card_id" in database table "toggl_time" from the CSV file "toggl_time.csv":
  `./toggl-trello-kpi -choice=7 toggl_time.csv toggl_time trello_card_id`
 
-Example 8. Create the Grafana Dashboard.
+Example 8. Create the Grafana Dashboard from the configuration defined in "configuration/settings.yml":
   `./toggl-trello-kpi -choice=8`
 
+### Run the Grafana Dashboard
+=================
+
+Run the following command:
+```sh
+docker-compose -f docker-compose.yml up
+```
+
 ### PostgreSQL database client
+=================
 
 Run the PostgreSQL client (requires psql):
 ```sh
