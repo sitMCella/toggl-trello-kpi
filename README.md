@@ -1,5 +1,7 @@
 # Key Perfomance Indicators (KPIs) for Toggl and Trello
 
+![Grafana Dashboard](https://github.com/sitMCella/toggl-trello-kpi/wiki/images/Grafana_Dashboard_example.png)
+
 ## Table of contents
 
    * [Introduction](#introduction)
