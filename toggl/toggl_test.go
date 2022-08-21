@@ -33,6 +33,7 @@ func (mockTogglClient *MockTogglClient) GetRange(start time.Time, end time.Time)
 		Billable:       true,
 		Workspace_id:   2245503,
 		Project_id:     7458839,
+		Project_name:   "project name",
 		Tags:           []string{"tag1"},
 		Trello_card_id: "",
 	}
@@ -147,8 +148,8 @@ func TestTogglDownloadAsCsv(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error while reading the file %s: %v", togglTimeEntriesFileName, err)
 	}
-	expectedData := `Id,Description,Start,Stop,Duration,Billable,Workspace_id,Project_id,Tags,Trello_card_id
-86854567,description,2021-02-01T09:15:00Z,2021-02-01T09:30:00Z,900,true,2245503,7458839,tag1,
+	expectedData := `Id,Description,Start,Stop,Duration,Billable,Workspace_id,Project_id,Project_name,Tags,Trello_card_id
+86854567,description,2021-02-01T09:15:00Z,2021-02-01T09:30:00Z,900,true,2245503,7458839,project name,tag1,
 `
 	assert.Equal(t, []byte(expectedData), data, "Expected same file content")
 }
@@ -201,7 +202,7 @@ func TestTogglStoreInDatabase(t *testing.T) {
 
 	mock.ExpectBegin()
 	mock.ExpectExec("INSERT INTO toggl_time").
-		WithArgs(86854567, "description", time.Date(2021, time.Month(02), 01, 9, 15, 0, 0, time.UTC), time.Date(2021, time.Month(02), 01, 9, 30, 0, 0, time.UTC), 900, true, 2245503, 7458839, pq.Array([]string{"tag1"})).
+		WithArgs(86854567, "description", time.Date(2021, time.Month(02), 01, 9, 15, 0, 0, time.UTC), time.Date(2021, time.Month(02), 01, 9, 30, 0, 0, time.UTC), 900, true, 2245503, 7458839, "project name", pq.Array([]string{"tag1"})).
 		WillReturnResult(sqlmock.NewResult(1, 1))
 	mock.ExpectCommit()
 
