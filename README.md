@@ -30,7 +30,7 @@ Grafana is used as visualization tool, and a custom dashboard has been created f
 
 Golang is used for retrieving the Toggl data using the Toggl Reports API and the Trello cards using the Trello API.
 
-This project makes use of the Golang projects https://github.com/dougEfresh/gtoggl, and https://github.com/adlio/trello.
+This project makes use of the Golang project https://github.com/adlio/trello.
 
 Read the [application wiki](https://github.com/sitMCella/toggl-trello-kpi/wiki) for a detailed description of the application configuration and an usage example.
 
@@ -175,7 +175,7 @@ Run the application:
 Where:
  - choice_id: 1 -> Download the Toggl Time data as CSV file.
  - choice_id: 2 -> Download the Trello cards as CSV file.
- - choice_id: 3 -> Insert the Toggl Time data into the database from a CSV file.
+ - choice_id: 3 -> Insert either the Toggl Time entries or the Trello card entries into the database from a CSV file.
  - choice_id: 4 -> Download and store into the database the Toggl Time data.
  - choice_id: 5 -> Download and store into the database the Trello Board cards.
  - choice_id: 6 -> Download the database as CSV file. Provide the database name as argument. Provide optionally the list of column names as argument.

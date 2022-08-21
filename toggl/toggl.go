@@ -33,6 +33,7 @@ type TogglTimeEntry struct {
 	Billable       bool
 	Workspace_id   uint64
 	Project_id     uint64
+	Project_name   string
 	Tags           []string
 	Trello_card_id string
 }
@@ -154,11 +155,11 @@ func (togglTime *TogglTime) storeInDatabase(togglTimeEntry TogglTimeEntry) (err 
 			}
 		}
 	}()
-	sqlStmt := `INSERT INTO toggl_time(id, description, start, stop, duration, billable, workspace_id, project_id, tags, trello_card_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, '')`
+	sqlStmt := `INSERT INTO toggl_time(id, description, start, stop, duration, billable, workspace_id, project_id, project_name, tags, trello_card_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, '')`
 	_, err = togglTime.databaseConnection.Exec(
 		sqlStmt,
 		togglTimeEntry.Id, togglTimeEntry.Description, togglTimeEntry.Start, togglTimeEntry.Stop, togglTimeEntry.Duration,
-		togglTimeEntry.Billable, togglTimeEntry.Workspace_id, togglTimeEntry.Project_id, pq.Array(togglTimeEntry.Tags))
+		togglTimeEntry.Billable, togglTimeEntry.Workspace_id, togglTimeEntry.Project_id, togglTimeEntry.Project_name, pq.Array(togglTimeEntry.Tags))
 	if err != nil {
 		return
 	}

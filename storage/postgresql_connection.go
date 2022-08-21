@@ -79,6 +79,7 @@ func (pc PostgresqlConnection) createTogglTimeTable() (err error) {
 					billable        boolean NOT NULL,
 					workspace_id    integer NOT NULL,
 					project_id      integer NOT NULL,
+					project_name    varchar(255) NOT NULL,
 					tags            varchar(255)[] NOT NULL DEFAULT array[]::varchar(255)[],
 					trello_card_id  varchar(255) NOT NULL DEFAULT '',
 					PRIMARY KEY(id)

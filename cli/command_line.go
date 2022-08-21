@@ -8,7 +8,6 @@ import (
 	"time"
 
 	trelloLib "github.com/adlio/trello"
-	"github.com/dougEfresh/gtoggl"
 	"github.com/sitMCella/toggl-trello-kpi/configuration"
 	"github.com/sitMCella/toggl-trello-kpi/grafana"
 	"github.com/sitMCella/toggl-trello-kpi/storage"
@@ -59,6 +58,7 @@ func (commandLine *CommandLine) Execute() {
 	}
 }
 
+// downloadTogglTimeAsCsv downloads and stores the Toggl Time entries in a CSV file.
 func (commandLine *CommandLine) downloadTogglTimeAsCsv(args []string) {
 	fmt.Println("Execute: Download Toggl Time as CSV file.")
 	if len(args) < 2 {
@@ -72,11 +72,7 @@ func (commandLine *CommandLine) downloadTogglTimeAsCsv(args []string) {
 	if err != nil {
 		commandLine.logger.Fatal("Error converting the month argument to numeric value", zap.Error(err))
 	}
-	gtogglClient, err := gtoggl.NewClient(commandLine.config.TogglConfiguration.ApiToken)
-	if err != nil {
-		commandLine.logger.Fatal("Error initializing the Toggl client", zap.Error(err))
-	}
-	togglClient := toggl.NewTogglClient(commandLine.logger, gtogglClient)
+	togglClient := toggl.NewTogglClient(commandLine.config, commandLine.logger)
 	togglTime, err := toggl.NewTogglTime(commandLine.logger, togglClient)
 	if err != nil {
 		commandLine.logger.Fatal("Error creating TogglTime", zap.Error(err))
@@ -91,6 +87,7 @@ func (commandLine *CommandLine) downloadTogglTimeAsCsv(args []string) {
 	}
 }
 
+// downloadTrelloCardsAsCsv downloads and stores the Trello Card entries in a CSV file.
 func (commandLine *CommandLine) downloadTrelloCardsAsCsv() {
 	fmt.Println("Execute: Download Trello cards as CSV file.")
 	client := trelloLib.NewClient(commandLine.config.TrelloConfiguration.AppKey, commandLine.config.TrelloConfiguration.ApiToken)
@@ -105,6 +102,7 @@ func (commandLine *CommandLine) downloadTrelloCardsAsCsv() {
 	}
 }
 
+// insertFromCsv inserts the database entries for either the Toggl Time or the Trello Cards from a CSV file.
 func (commandLine *CommandLine) insertFromCsv(args []string) {
 	fmt.Println("Execute: Insert from CSV file.")
 	if len(args) < 2 {
@@ -142,6 +140,7 @@ func executeInsertFromCsv(insertFromCsv *storage.InsertFromCsv, fileName string,
 	return nil
 }
 
+// storeTogglTime downloads and stores the Toggl Time entries in the database.
 func (commandLine *CommandLine) storeTogglTime() {
 	fmt.Println("Execute: Store Toggl Time.")
 	postgresqlConnection := initPostgresqlConnection(commandLine.config, commandLine.logger)
@@ -151,11 +150,7 @@ func (commandLine *CommandLine) storeTogglTime() {
 			commandLine.logger.Fatal("Error closing the PostgreSQL connection", zap.Error(dberr))
 		}
 	}()
-	gtogglClient, err := gtoggl.NewClient(commandLine.config.TogglConfiguration.ApiToken)
-	if err != nil {
-		commandLine.logger.Fatal("Error initializing the Toggl client", zap.Error(err))
-	}
-	togglClient := toggl.NewTogglClient(commandLine.logger, gtogglClient)
+	togglClient := toggl.NewTogglClient(commandLine.config, commandLine.logger)
 	togglTime, err := toggl.NewTogglTimeWithDatabaseConnection(commandLine.logger, togglClient, postgresqlConnection.GetDb())
 	if err != nil {
 		commandLine.logger.Fatal("Error creating TogglTime", zap.Error(err))
@@ -170,6 +165,7 @@ func (commandLine *CommandLine) storeTogglTime() {
 	}
 }
 
+// storeTrelloBoard downloads and stores the Trello Card entries in the database.
 func (commandLine *CommandLine) storeTrelloBoard() {
 	fmt.Println("Execute: Store Trello Board.")
 	postgresqlConnection := initPostgresqlConnection(commandLine.config, commandLine.logger)
@@ -191,6 +187,7 @@ func (commandLine *CommandLine) storeTrelloBoard() {
 	}
 }
 
+// downloadTableAsCsv downloads either the Toggl Time or the Trello Cards from the database to a CSV file.
 func (commandLine *CommandLine) downloadTableAsCsv(args []string) {
 	fmt.Println("Execute: Download table as CSV.")
 	if len(args) == 0 {
@@ -225,6 +222,7 @@ func (commandLine *CommandLine) downloadTableAsCsv(args []string) {
 	}
 }
 
+// updateFromCsv updates the database entries for the specified table from a CSV file.
 func (commandLine *CommandLine) updateFromCsv(args []string) {
 	fmt.Println("Execute: Update table from CSV.")
 	if len(args) < 3 {
@@ -259,6 +257,7 @@ func initPostgresqlConnection(config configuration.Configuration, logger *zap.Lo
 	return
 }
 
+// createGrafanaDashboard creates the Grafana json definition from the application configuration.
 func (commandLine *CommandLine) createGrafanaDashboard() {
 	fmt.Println("Execute: Create the Grafana Dashboard.")
 	grafanaDashboard, err := grafana.NewGrafanaDashboard(commandLine.config, commandLine.logger)
