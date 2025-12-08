@@ -345,7 +345,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select\n  now() as time,\n  sum(toggl_time.duration) as value,\n  trello_card.customer\nfrom toggl_time, trello_card\nwhere toggl_time.trello_card_id = trello_card.id\ngroup by trello_card.customer\n",
+          "rawSql": "select\n  now() as time,\n  sum(toggl_time.duration) as value,\n  trello_card.customer\nfrom toggl_time, trello_card\nwhere $__timeFilter(toggl_time.start::date) and toggl_time.trello_card_id = trello_card.id\ngroup by trello_card.customer\n",
           "refId": "A",
           "select": [
             [
