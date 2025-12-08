@@ -1,0 +1,11 @@
+Id,Name,Closed,Labels,Project,Customer,Team,Type
+6935f27eea99ef891401a1ee,Task2 Design,false,"Cyberdyne Systems,DevOps,Design,Cyberdyne App",Cyberdyne App,Cyberdyne Systems,DevOps,Design
+6935f5a9d2795a07e1159aca,Task2 Implementation,false,"Cyberdyne Systems,DevOps,Implementation,Cyberdyne App",Cyberdyne App,Cyberdyne Systems,DevOps,Implementation
+6935f5fed53b730880178473,Incident3,false,"Cyberdyne Systems,DevOps,Incident,Cyberdyne App",Cyberdyne App,Cyberdyne Systems,DevOps,Incident
+6935f25d923fe06c6b50f482,Task1 Implementation,false,"Cyberdyne Systems,DevOps,Implementation,Cyberdyne App",Cyberdyne App,Cyberdyne Systems,DevOps,Implementation
+6935f568418478f5716e912d,Task2 Spike,false,"Cyberdyne Systems,DevOps,Spike,Cyberdyne App",Cyberdyne App,Cyberdyne Systems,DevOps,Spike
+6935f5e418bc701c943a0f43,Incident2,false,"Cyberdyne Systems,DevOps,Incident,Cyberdyne App",Cyberdyne App,Cyberdyne Systems,DevOps,Incident
+6935f1774a597bca4311d2c3,Task1 Design,false,"Cyberdyne Systems,DevOps,Cyberdyne App,Design",Cyberdyne App,Cyberdyne Systems,DevOps,Design
+6935f543c5bcd058d0927d77,Task1 Spike,false,"Cyberdyne Systems,Cyberdyne App,DevOps,Spike",Cyberdyne App,Cyberdyne Systems,DevOps,Spike
+6935f57ced13ffa67e1dd6da,Task3 Spike,false,"Cyberdyne Systems,DevOps,Spike,Cyberdyne App",Cyberdyne App,Cyberdyne Systems,DevOps,Spike
+6935f5c3e4e0ba51fd936cf8,Incident1,false,"Cyberdyne Systems,DevOps,Cyberdyne App,Incident",Cyberdyne App,Cyberdyne Systems,DevOps,Incident

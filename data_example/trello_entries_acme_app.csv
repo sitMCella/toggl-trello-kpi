@@ -1,0 +1,11 @@
+Id,Name,Closed,Labels,Project,Customer,Team,Type
+6935eee90d40b4de83fec74e,Task3 Implementation,false,"Acme Corp,DevOps,Implementation,Acme App",Acme App,Acme Corp,DevOps,Implementation
+6935ef3d8f64724829210d56,Task 4 Implementation,false,"Acme Corp,Implementation,Acme App,DevOps",Acme App,Acme Corp,DevOps,Implementation
+6935f66d2bfa14d6613bdfb6,Incident2,false,"Acme Corp,DevOps,Incident,Acme App",Acme App,Acme Corp,DevOps,Incident
+6935ee245c3763e00c0d30e2,Task2 Design,false,"Acme Corp,DevOps,Design,Acme App",Acme App,Acme Corp,DevOps,Design
+6935ee776b93d56fa30646c5,Task1 Implementation,false,"Acme Corp,DevOps,Acme App,Implementation",Acme App,Acme Corp,DevOps,Implementation
+6935eed587a0fc1fd28ca439,Task2 Implementation,false,"Acme Corp,DevOps,Implementation,Acme App",Acme App,Acme Corp,DevOps,Implementation
+6935e56518bc701c94305493,Task1 Design,false,"Acme App,Acme Corp,DevOps,Design",Acme App,Acme Corp,DevOps,Design
+6935ef030a64fbc930178953,Task 3 Design,false,"Acme Corp,Design,Acme App,DevOps",Acme App,Acme Corp,DevOps,Design
+6935f6225f46615ab7a1cec8,Task1 Spike,false,"Acme Corp,Acme App,DevOps,Spike",Acme App,Acme Corp,DevOps,Spike
+6935f64d628077da2aa00b7b,Incident1,false,"Acme Corp,DevOps,Incident,Acme App",Acme App,Acme Corp,DevOps,Incident
