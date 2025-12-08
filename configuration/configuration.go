@@ -23,7 +23,8 @@ type ApplicationConfiguration struct {
 
 // TogglConfiguration struct defines the Toggl configuration properties.
 type TogglConfiguration struct {
-	ApiToken string
+	ApiToken    string
+	WorkspaceId string
 }
 
 // TrelloConfiguration struct define the Trello configuration properties.
@@ -117,8 +118,10 @@ func newApplicationConfiguration(viper *viper.Viper) ApplicationConfiguration {
 
 func newTogglConfiguration(viper *viper.Viper) TogglConfiguration {
 	apiToken := viper.GetString("TOGGL_API_TOKEN")
+	workspaceId := viper.GetString("TOGGL_WORKSPACE_ID")
 	return TogglConfiguration{
-		ApiToken: apiToken,
+		ApiToken:    apiToken,
+		WorkspaceId: workspaceId,
 	}
 }
 

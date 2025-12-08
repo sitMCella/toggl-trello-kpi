@@ -1,0 +1,14 @@
+Id,Name,Closed,Labels,Project,Customer,Team,Type
+6935f4600b723de7dab3b2a2,Task4 Implementation,false,"Umbrella Corporation,DevOps,Implementation,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Implementation
+6935f476e7ef898997df83f7,Task5 Implementation,false,"Umbrella Corporation,DevOps,Implementation,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Implementation
+6935f4d1b0c84110b43fd8fc,Task2 Spike,false,"Umbrella Corporation,DevOps,Spike,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Spike
+6935f51ed233545dd0719bc4,Incident3,false,"Umbrella Corporation,DevOps,Incident,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Incident
+6935f3eedad24a96063c4017,Task3 Design,false,"Umbrella Corporation,DevOps,Design,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Design
+6935f43071e19a94484e08de,Task2 Implementation,false,"Umbrella Corporation,DevOps,Implementation,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Implementation
+6935f4483a7da046c12c6fde,Task3 Implementation,false,"Umbrella Corporation,DevOps,Implementation,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Implementation
+6935f37622f34c3c59435f8c,Task1 Design,false,"Umbrella Corporation,DevOps,Design,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Design
+6935f3dadf0757ae0f8ba753,Task2 Design,false,"Umbrella Corporation,DevOps,Design,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Design
+6935f41388676f0bd636f553,Task1 Implementation,false,"Umbrella Corporation,DevOps,Umbrella App,Implementation",Umbrella App,Umbrella Corporation,DevOps,Implementation
+6935f49b22f34c3c5943f89f,Task1 Spike,false,"Umbrella Corporation,DevOps,Umbrella App,Spike",Umbrella App,Umbrella Corporation,DevOps,Spike
+6935f4ec8469dc9128292130,Incident1,false,"Umbrella Corporation,DevOps,Umbrella App,Incident",Umbrella App,Umbrella Corporation,DevOps,Incident
+6935f50ae7c616f0c5f17c28,Incident2,false,"Umbrella Corporation,DevOps,Incident,Umbrella App",Umbrella App,Umbrella Corporation,DevOps,Incident

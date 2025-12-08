@@ -49,7 +49,7 @@ Add the Toggl API Token to the property "TOGGL_API_TOKEN" in `configuration/sett
 Run the following curl command for testing purposes. The command retrieves the user workspaces in Toggl.
 
 ```
-curl -v -u {Toggl_API_Token}:api_token -H "accept: application/json" -X GET https://api.track.toggl.com/api/v8/workspaces | jq '.'
+curl -v -u {Toggl_API_Token}:api_token -H "accept: application/json" -X GET https://api.track.toggl.com/api/v9/workspaces | jq '.'
 ```
 
 ### Trello API
@@ -59,19 +59,9 @@ Generate the Trello App Key from the web page:
 
 Add the Trello App Key to the property "TRELLO_APP_KEY" in `configuration/settings.yml`.
 
-Generate the API Token for the application from the following web page.
-
-```sh
-https://trello.com/1/authorize?key=<Trello_App_Key>&name=my_api_key&expiration=30days&response_type=token
-```
+Generate the API Token for the application from the API Key web page.
 
 Add the Trello API Token to the property "TRELLO_API_TOKEN" in `configuration/settings.yml`.
-
-Run the following curl command to test the REST API call.
-
-```sh
-curl -H "accept: application/json" -X GET "https://api.trello.com/1/members/me/boards?key={Trello_App_Key}&token={Trello_Token}" | jq '.'
-```
 
 Run the following curl command in order to retrieve the list of boards from Trello.
 
@@ -108,10 +98,10 @@ The labels that corresponds to the same label type should have the same color, o
 Add the label colors to the corresponding properties in `configuration/settings.yml`. For example:
 
 ```yaml
-TRELLO_LABEL_PROJECT_COLOR: ["sky"]
+TRELLO_LABEL_PROJECT_COLOR: ["blue"]
 TRELLO_LABEL_CUSTOMER_COLOR: ["green"]
 TRELLO_LABEL_TEAM_COLOR: ["yellow"]
-TRELLO_LABEL_CARD_TYPE_COLOR: ["red", "blue"]
+TRELLO_LABEL_CARD_TYPE_COLOR: ["red", "purple"]
 ```
 
 ### Grafana
@@ -176,7 +166,7 @@ The project consists of a binary application used for retrieving the data from T
 
 Docker compose is used for running the database and Grafana.
 
-The usual flow is the following: 1) Create the Grafana dashboard, 2) Retrieve and configure Toggl and Trello data, 3) Run the Grafana dashboard, 4) Send the data to the database.
+The usual flow is the following: 1) Create the Grafana dashboard, 2) Retrieve and configure Toggl and Trello data, 3) Run the Grafana dashboard, 4) Store the data to the database.
 
 ### Configure Toggl and Trello Data
 
@@ -208,7 +198,7 @@ Example 8. Create the Grafana Dashboard from the configuration defined in "confi
 
 The choices 4, 5, 6 and 7 provide optional features.
 
-### Run the Grafana Dashboard
+### Run the Grafana Dashboard and the Database
 
 Run the following command.
 
@@ -223,3 +213,7 @@ Run the PostgreSQL client (requires psql).
 ```sh
 psql -h 127.0.0.1 -p 5432 -U postgres -W -d toggltrelloapi
 ```
+
+### Example
+
+The directory "data_example" contains and example scenario.
